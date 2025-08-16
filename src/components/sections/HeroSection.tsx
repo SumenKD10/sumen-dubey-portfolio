@@ -1,14 +1,11 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Mail, Sparkles, Users, Award, Briefcase } from "lucide-react";
+import { ArrowDown, Download, Mail, Users, Award, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import MagneticButton from "@/components/modern-ui/MagneticButton";
 import TypewriterEffect from "@/components/modern-ui/TypewriterEffect";
 import GlowCard from "@/components/modern-ui/GlowCard";
 
 const HeroSection = () => {
-  const [showSparkle, setShowSparkle] = useState(false);
-  
   const roles = [
     "Frontend Developer",
     "React Specialist", 
@@ -16,133 +13,169 @@ const HeroSection = () => {
     "Performance Expert"
   ];
 
-  const handleWaveClick = () => {
-    setShowSparkle(true);
-    setTimeout(() => setShowSparkle(false), 1000);
-  };
+  const stats = [
+    { value: "3+", label: "Years Experience", icon: Award },
+    { value: "15+", label: "Clients", icon: Users },
+    { value: "4+", label: "Projects", icon: Briefcase }
+  ];
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-background">
-      {/* Enhanced background with subtle gradient and floating elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/5" />
+      {/* Simplified background with clean gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-primary/5" />
       
-      {/* Animated gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float delay-1000" />
-      
-      {/* Spline 3D Background - Right side with enhanced opacity */}
-      <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block">
-        <iframe 
-          src='https://my.spline.design/glassmorphlandingloader-7a15e8b71f5a4b1e98c4b5df7d7b8c7f/' 
-          frameBorder='0' 
-          width='100%' 
-          height='100%'
-          className="opacity-30"
-        />
-      </div>
+      {/* Subtle floating elements */}
+      <div className="absolute top-20 left-20 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-float opacity-40" />
+      <div className="absolute bottom-20 right-20 w-48 h-48 bg-accent/10 rounded-full blur-3xl animate-float delay-1000 opacity-40" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left side - Content */}
           <motion.div
-            className="space-y-8"
+            className="lg:col-span-7 space-y-8"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Enhanced greeting with magnetic effect */}
+            {/* Clean greeting */}
             <motion.div
-              className="flex items-center space-x-3 magnetic-hover"
+              className="flex items-center space-x-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.4 }}
             >
-              <div className="orange-divider glow-primary"></div>
+              <div className="w-12 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
               <span className="text-lg text-muted-foreground font-medium">Hello there! 👋</span>
             </motion.div>
 
-            {/* Name and dynamic role title */}
-            <div>
-              <motion.div
-                className="mb-4"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
-                <p className="text-lg text-muted-foreground mb-2">I'm Sumen Kumar</p>
-                <motion.h1 
-                  className="text-5xl lg:text-6xl font-bold text-foreground mb-4 hover:animate-magnetic"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  Dubey
-                </motion.h1>
-                <div className="text-2xl lg:text-3xl font-bold text-primary">
-                  <TypewriterEffect 
-                    words={roles}
-                    className="text-2xl lg:text-3xl font-bold text-primary"
-                  />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Role description */}
+            {/* Enhanced name presentation */}
             <motion.div
               className="space-y-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              <motion.h1 
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                I'm{" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Sumen Kumar Dubey
+                </span>
+              </motion.h1>
+              
+              <div className="text-2xl lg:text-3xl font-bold">
+                <TypewriterEffect 
+                  words={roles}
+                  className="text-2xl lg:text-3xl font-bold text-primary"
+                />
+              </div>
+            </motion.div>
+
+            {/* Clean tech stack */}
+            <motion.div
+              className="flex flex-wrap gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              {["React.js", "React Native", "Node.js", "MongoDB"].map((tech, index) => (
+                <motion.span
+                  key={tech}
+                  className="px-4 py-2 bg-secondary/50 text-secondary-foreground rounded-full text-sm font-medium border border-border/50"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            {/* Professional summary */}
+            <motion.div
+              className="space-y-4 max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
-              <p className="text-muted-foreground">React.js | React Native | Node.js | MongoDB</p>
-            </motion.div>
-
-            {/* Elevator pitch - cleaner style */}
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-            >
-              <p className="text-lg text-foreground leading-relaxed max-w-lg">
+              <p className="text-lg text-foreground leading-relaxed">
                 Frontend Developer specialized in React & modern web performance — 
-                building apps that scale to <span className="text-primary font-semibold">1,000+ users</span>.
+                building applications that scale to{" "}
+                <span className="text-primary font-semibold">1,000+ users</span>.
               </p>
-              <p className="text-muted-foreground max-w-lg">
-                I build fast, interactive, and scalable applications with React, Next.js, and modern web technologies.
+              <p className="text-muted-foreground leading-relaxed">
+                I create fast, interactive, and scalable applications with modern web technologies, 
+                focusing on performance optimization and exceptional user experiences.
               </p>
             </motion.div>
 
-            {/* Enhanced CTA Buttons with magnetic effects */}
+            {/* Call-to-action buttons */}
             <motion.div
-              className="flex flex-wrap gap-6"
+              className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0 }}
             >
               <MagneticButton
-                variant="secondary"
+                variant="primary"
                 size="lg"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border-2 border-border hover:border-primary hover:shadow-lg hover:shadow-primary/10"
+                className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25"
               >
                 <Mail className="w-5 h-5 mr-2" />
                 Let's Connect
               </MagneticButton>
               <MagneticButton
-                variant="primary"
+                variant="secondary"
                 size="lg"
-                className="bg-primary hover:bg-primary/90 glow-on-hover"
+                className="border-2 border-border hover:border-primary hover:shadow-lg"
               >
                 <Download className="w-5 h-5 mr-2" />
-                Hire Me
+                Download Resume
               </MagneticButton>
+            </motion.div>
+
+            {/* Stats integrated into content */}
+            <motion.div
+              className="grid grid-cols-3 gap-6 pt-8 border-t border-border/50"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1 }}
+            >
+              {stats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <motion.div
+                    key={stat.label}
+                    className="text-center group cursor-pointer"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.2 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="flex items-center justify-center mb-2">
+                      <IconComponent className="w-5 h-5 text-primary mr-2" />
+                      <span className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                        {stat.value}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                );
+              })}
             </motion.div>
 
             {/* Scroll indicator */}
             <motion.div
-              className="flex items-center space-x-2 text-muted-foreground cursor-pointer"
+              className="flex items-center space-x-2 text-muted-foreground cursor-pointer pt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 1.4 }}
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
               whileHover={{ y: 5 }}
             >
@@ -151,99 +184,86 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-            {/* Right side - Enhanced Professional Photo with Glow Cards */}
+          {/* Right side - Professional Photo */}
           <motion.div
-            className="flex justify-center lg:justify-self-center relative"
+            className="lg:col-span-5 flex justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative max-w-sm mx-auto">
-              {/* Enhanced main photo container with glow effect */}
-              <GlowCard className="p-4 sm:p-6 lg:p-8 shadow-2xl" intensity="medium">
+            <div className="relative">
+              <GlowCard className="p-6 shadow-2xl max-w-sm" intensity="medium">
                 <motion.img
                   src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                   alt="Sumen Kumar Dubey - Frontend Developer"
-                  className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] h-64 sm:h-80 lg:h-96 object-cover rounded-2xl mx-auto"
+                  className="w-full h-80 lg:h-96 object-cover rounded-2xl"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 />
+                
+                {/* Floating accent elements */}
+                <motion.div
+                  className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-full backdrop-blur-sm"
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div
+                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent/20 rounded-full backdrop-blur-sm"
+                  animate={{ 
+                    y: [0, 10, 0],
+                    rotate: [360, 180, 0]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
               </GlowCard>
-              
-              {/* Enhanced Stats Cards with glow effects */}
-              <motion.div
-                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 hidden sm:block"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <GlowCard className="min-w-[100px] sm:min-w-[120px] p-4" intensity="low">
-                  <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-primary mb-1">3+</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground font-medium">Years Experience</div>
-                  </div>
-                </GlowCard>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-1/2 -right-6 sm:-right-8 hidden md:block"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-              >
-                <GlowCard className="min-w-[100px] sm:min-w-[120px] p-4" intensity="low">
-                  <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-primary mb-1">15+</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground font-medium">Clients</div>
-                  </div>
-                </GlowCard>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 hidden sm:block"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-              >
-                <GlowCard className="min-w-[100px] sm:min-w-[120px] p-4" intensity="low">
-                  <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-primary mb-1">4+</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground font-medium">Projects</div>
-                  </div>
-                </GlowCard>
-              </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Recruiter shortcuts - Responsive positioning */}
+      {/* Simplified recruiter shortcuts */}
       <motion.div
-        className="fixed right-4 sm:right-6 top-1/2 transform -translate-y-1/2 z-30 space-y-3 hidden lg:flex lg:flex-col"
+        className="fixed right-6 top-1/2 -translate-y-1/2 z-30 space-y-3 hidden xl:flex xl:flex-col"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
+        transition={{ delay: 1.6, duration: 0.6 }}
       >
-        <Button
-          size="sm"
-          className="bg-card border border-border p-3 hover-lift hover:bg-secondary shadow-lg"
-          title="Download Resume"
-        >
-          <Download className="h-4 w-4 text-primary" />
-        </Button>
-        <Button
-          size="sm"
-          className="bg-card border border-border p-3 hover-lift hover:bg-secondary shadow-lg"
-          title="View Experience"
-          onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          <Briefcase className="h-4 w-4 text-primary" />
-        </Button>
-        <Button
-          size="sm"
-          className="bg-card border border-border p-3 hover-lift hover:bg-secondary shadow-lg"
-          title="Contact Me"
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          <Mail className="h-4 w-4 text-primary" />
-        </Button>
+        {[
+          { icon: Download, title: "Download Resume", action: () => {} },
+          { icon: Briefcase, title: "View Experience", action: () => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) },
+          { icon: Mail, title: "Contact Me", action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }
+        ].map((item, index) => {
+          const IconComponent = item.icon;
+          return (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.7 + index * 0.1 }}
+            >
+              <Button
+                size="sm"
+                className="bg-card/80 backdrop-blur-sm border border-border/50 p-3 hover:bg-secondary shadow-lg hover:shadow-xl transition-all duration-200"
+                title={item.title}
+                onClick={item.action}
+              >
+                <IconComponent className="h-4 w-4 text-primary" />
+              </Button>
+            </motion.div>
+          );
+        })}
       </motion.div>
     </section>
   );
