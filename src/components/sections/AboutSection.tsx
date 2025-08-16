@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Code, Users, Award, TrendingUp } from "lucide-react";
+import GlowCard from "@/components/modern-ui/GlowCard";
+import MagneticButton from "@/components/modern-ui/MagneticButton";
 
 const AboutSection = () => {
   const stats = [
@@ -25,7 +27,7 @@ const AboutSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Left side - Image */}
+          {/* Left side - Enhanced Image with Glow Card */}
           <motion.div
             className="relative order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
@@ -33,18 +35,20 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="bg-card rounded-2xl p-4 lg:p-6 shadow-lg border border-border">
-              <img
+            <GlowCard className="p-4 lg:p-6 shadow-xl" intensity="medium">
+              <motion.img
                 src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                 alt="Sumen Kumar Dubey - About"
                 className="w-full h-64 sm:h-72 lg:h-80 object-cover rounded-xl"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
               />
               
-              {/* Orange badge */}
-              <div className="absolute top-2 left-2 lg:top-4 lg:left-4 bg-primary text-white px-2 py-1 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm font-medium">
+              {/* Enhanced badge with glow effect */}
+              <div className="absolute top-2 left-2 lg:top-4 lg:left-4 bg-primary text-white px-2 py-1 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm font-medium glow-primary">
                 FRONTEND DEVELOPER
               </div>
-            </div>
+            </GlowCard>
           </motion.div>
 
           {/* Right side - Content */}
@@ -80,18 +84,19 @@ const AboutSection = () => {
                 </p>
               </div>
 
-              <motion.button
-                className="mt-6 lg:mt-8 bg-primary text-white px-6 lg:px-8 py-2 lg:py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors text-sm lg:text-base"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <MagneticButton
+                variant="primary"
+                size="lg"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="mt-6 lg:mt-8 glow-on-hover"
               >
                 Let's Work Together
-              </motion.button>
+              </MagneticButton>
             </div>
           </motion.div>
         </div>
 
-        {/* Stats Section */}
+        {/* Enhanced Stats Section with Glow Cards */}
         <motion.div
           className="mt-12 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
           initial={{ opacity: 0, y: 30 }}
@@ -102,18 +107,25 @@ const AboutSection = () => {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="stats-card text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
             >
-              <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
-                <stat.icon className="h-6 w-6 text-primary" />
-              </div>
-              <div className="stats-number">{stat.value}</div>
-              <p className="stats-label">{stat.label}</p>
+              <GlowCard 
+                className="text-center p-6 magnetic-hover"
+                intensity="low"
+              >
+                <motion.div
+                  className="inline-flex p-3 rounded-full bg-primary/10 mb-4"
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <stat.icon className="h-6 w-6 text-primary" />
+                </motion.div>
+                <div className="text-2xl lg:text-3xl font-bold text-primary mb-2">{stat.value}</div>
+                <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
+              </GlowCard>
             </motion.div>
           ))}
         </motion.div>

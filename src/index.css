@@ -169,7 +169,7 @@
     box-shadow: var(--shadow-glow);
   }
 
-  /* Custom cursor */
+  /* Modern cursor and interactive effects */
   .custom-cursor {
     cursor: none;
   }
@@ -194,6 +194,40 @@
     pointer-events: none;
     z-index: 9998;
     transition: var(--transition-smooth);
+  }
+
+  /* Advanced hover and focus effects */
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .magnetic-hover:hover {
+    transform: scale(1.05) translateY(-2px);
+  }
+
+  /* Glow effects */
+  .glow-on-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow-on-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent-glow)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .glow-on-hover:hover::before {
+    opacity: 1;
   }
 
   /* Loading animation */
