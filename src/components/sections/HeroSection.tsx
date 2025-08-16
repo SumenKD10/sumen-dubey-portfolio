@@ -2,9 +2,19 @@ import { motion } from "framer-motion";
 import { ArrowDown, Download, Mail, Sparkles, Users, Award, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import MagneticButton from "@/components/modern-ui/MagneticButton";
+import TypewriterEffect from "@/components/modern-ui/TypewriterEffect";
+import GlowCard from "@/components/modern-ui/GlowCard";
 
 const HeroSection = () => {
   const [showSparkle, setShowSparkle] = useState(false);
+  
+  const roles = [
+    "Frontend Developer",
+    "React Specialist", 
+    "UI/UX Enthusiast",
+    "Performance Expert"
+  ];
 
   const handleWaveClick = () => {
     setShowSparkle(true);
@@ -12,18 +22,22 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-background">
-      {/* Clean background with subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background to-secondary/10" />
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-background">
+      {/* Enhanced background with subtle gradient and floating elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/5" />
       
-      {/* Spline 3D Background - Right side */}
+      {/* Animated gradient orbs */}
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float delay-1000" />
+      
+      {/* Spline 3D Background - Right side with enhanced opacity */}
       <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block">
         <iframe 
           src='https://my.spline.design/glassmorphlandingloader-7a15e8b71f5a4b1e98c4b5df7d7b8c7f/' 
           frameBorder='0' 
           width='100%' 
           height='100%'
-          className="opacity-40"
+          className="opacity-30"
         />
       </div>
 
@@ -36,18 +50,18 @@ const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Clean greeting */}
+            {/* Enhanced greeting with magnetic effect */}
             <motion.div
-              className="flex items-center space-x-3"
+              className="flex items-center space-x-3 magnetic-hover"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <div className="orange-divider"></div>
-              <span className="text-lg text-muted-foreground font-medium">Hello.</span>
+              <div className="orange-divider glow-primary"></div>
+              <span className="text-lg text-muted-foreground font-medium">Hello there! 👋</span>
             </motion.div>
 
-            {/* Name and title - Behance style */}
+            {/* Name and dynamic role title */}
             <div>
               <motion.div
                 className="mb-4"
@@ -56,8 +70,18 @@ const HeroSection = () => {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 <p className="text-lg text-muted-foreground mb-2">I'm Sumen Kumar</p>
-                <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-4">Dubey</h1>
-                <h2 className="text-2xl lg:text-3xl font-bold text-primary">Frontend Developer</h2>
+                <motion.h1 
+                  className="text-5xl lg:text-6xl font-bold text-foreground mb-4 hover:animate-magnetic"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  Dubey
+                </motion.h1>
+                <div className="text-2xl lg:text-3xl font-bold text-primary">
+                  <TypewriterEffect 
+                    words={roles}
+                    className="text-2xl lg:text-3xl font-bold text-primary"
+                  />
+                </div>
               </motion.div>
             </div>
 
@@ -87,26 +111,30 @@ const HeroSection = () => {
               </p>
             </motion.div>
 
-            {/* CTA Buttons - Behance style */}
+            {/* Enhanced CTA Buttons with magnetic effects */}
             <motion.div
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0 }}
             >
-              <Button
-                variant="outline"
+              <MagneticButton
+                variant="secondary"
                 size="lg"
-                className="hover-lift border-border text-foreground hover:bg-secondary"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="border-2 border-border hover:border-primary hover:shadow-lg hover:shadow-primary/10"
               >
-                Let's Contact
-              </Button>
-              <Button
+                <Mail className="w-5 h-5 mr-2" />
+                Let's Connect
+              </MagneticButton>
+              <MagneticButton
+                variant="primary"
                 size="lg"
-                className="gradient-primary text-white font-semibold hover-lift"
+                className="bg-primary hover:bg-primary/90 glow-on-hover"
               >
+                <Download className="w-5 h-5 mr-2" />
                 Hire Me
-              </Button>
+              </MagneticButton>
             </motion.div>
 
             {/* Scroll indicator */}
@@ -123,7 +151,7 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-            {/* Right side - Professional Photo with Stats Cards */}
+            {/* Right side - Enhanced Professional Photo with Glow Cards */}
           <motion.div
             className="flex justify-center lg:justify-self-center relative"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -131,47 +159,55 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="relative max-w-sm mx-auto">
-              {/* Main photo container */}
-              <div className="bg-card rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl border border-border">
-                <img
+              {/* Enhanced main photo container with glow effect */}
+              <GlowCard className="p-4 sm:p-6 lg:p-8 shadow-2xl" intensity="medium">
+                <motion.img
                   src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                   alt="Sumen Kumar Dubey - Frontend Developer"
                   className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] h-64 sm:h-80 lg:h-96 object-cover rounded-2xl mx-auto"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 />
-              </div>
+              </GlowCard>
               
-              {/* Stats Cards - Responsive positioning */}
+              {/* Enhanced Stats Cards with glow effects */}
               <motion.div
-                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 stats-card min-w-[100px] sm:min-w-[120px] hidden sm:block"
+                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 hidden sm:block"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <div className="text-center">
-                  <div className="stats-number text-lg sm:text-xl">3+</div>
-                  <div className="stats-label text-xs sm:text-sm">Years Experience</div>
-                </div>
+                <GlowCard className="min-w-[100px] sm:min-w-[120px] p-4" intensity="low">
+                  <div className="text-center">
+                    <div className="text-lg sm:text-xl font-bold text-primary mb-1">3+</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground font-medium">Years Experience</div>
+                  </div>
+                </GlowCard>
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 -right-6 sm:-right-8 stats-card min-w-[100px] sm:min-w-[120px] hidden md:block"
+                className="absolute top-1/2 -right-6 sm:-right-8 hidden md:block"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
               >
-                <div className="text-center">
-                  <div className="stats-number text-lg sm:text-xl">15+</div>
-                  <div className="stats-label text-xs sm:text-sm">Clients</div>
-                </div>
+                <GlowCard className="min-w-[100px] sm:min-w-[120px] p-4" intensity="low">
+                  <div className="text-center">
+                    <div className="text-lg sm:text-xl font-bold text-primary mb-1">15+</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground font-medium">Clients</div>
+                  </div>
+                </GlowCard>
               </motion.div>
 
               <motion.div
-                className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 stats-card min-w-[100px] sm:min-w-[120px] hidden sm:block"
+                className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 hidden sm:block"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 2 }}
               >
-                <div className="text-center">
-                  <div className="stats-number text-lg sm:text-xl">4+</div>
-                  <div className="stats-label text-xs sm:text-sm">Projects</div>
-                </div>
+                <GlowCard className="min-w-[100px] sm:min-w-[120px] p-4" intensity="low">
+                  <div className="text-center">
+                    <div className="text-lg sm:text-xl font-bold text-primary mb-1">4+</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground font-medium">Projects</div>
+                  </div>
+                </GlowCard>
               </motion.div>
             </div>
           </motion.div>

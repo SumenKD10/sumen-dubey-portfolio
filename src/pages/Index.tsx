@@ -11,6 +11,12 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/Footer";
 
+// Modern UI Components
+import MagneticCursor from "@/components/modern-ui/MagneticCursor";
+import InteractiveParticles from "@/components/modern-ui/InteractiveParticles";
+import ScrollProgress from "@/components/modern-ui/ScrollProgress";
+import FloatingElements from "@/components/modern-ui/FloatingElements";
+
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +26,13 @@ const Index = () => {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-screen bg-background text-foreground custom-cursor">
+        {/* Modern UI Enhancements */}
+        <MagneticCursor />
+        <InteractiveParticles />
+        <ScrollProgress />
+        <FloatingElements />
+        
         <AnimatePresence mode="wait">
           {isLoading ? (
             <LoadingScreen key="loading" onComplete={handleLoadingComplete} />
