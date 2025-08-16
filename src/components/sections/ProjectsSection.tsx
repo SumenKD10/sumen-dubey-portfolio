@@ -88,138 +88,75 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-muted/30">
+    <section id="projects" className="py-20 bg-secondary/5">
       <div className="container mx-auto px-6">
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Showcase of enterprise-level applications with real-world impact and technical innovation
-          </p>
+          <div className="text-center">
+            <div className="orange-divider mx-auto"></div>
+            <h2 className="section-header">My Portfolio</h2>
+            <p className="section-subheader mx-auto">
+              Crafting Seamless Design Experience
+            </p>
+            <p className="text-muted-foreground max-w-3xl mx-auto mb-8">
+              A design portfolio showcasing creative and effective solutions for digital products brand 
+              and user experience showcasing creative
+            </p>
+            <Button className="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90">
+              See All Project
+            </Button>
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="glass-card rounded-2xl overflow-hidden hover-lift group"
+              className="project-card group"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
             >
-              {/* Project Header */}
+              {/* Project Image Placeholder */}
+              <div className="h-64 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center border-b border-border">
+                <span className="text-6xl">{project.image}</span>
+              </div>
+
+              {/* Project Content */}
               <div className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-4xl">{project.image}</span>
-                    <div>
-                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <Badge 
-                        variant={project.status === "Production" ? "default" : "secondary"}
-                        className="mt-1"
-                      >
-                        {project.status}
-                      </Badge>
-                    </div>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <div className="flex gap-2">
+                    <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">
+                      Figma
+                    </span>
+                    <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">
+                      React
+                    </span>
                   </div>
                 </div>
 
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
                   {project.description}
                 </p>
 
-                {/* Features */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-foreground mb-3">Key Features:</h4>
-                  <ul className="space-y-2">
-                    {project.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start space-x-2 text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Metrics */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-foreground mb-3">Impact Metrics:</h4>
-                  <div className="grid grid-cols-1 gap-2">
-                    {Object.entries(project.metrics).map(([key, value], metricIndex) => (
-                      <div key={metricIndex} className="flex justify-between text-sm">
-                        <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
-                        <span className="font-medium text-primary">{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex space-x-3">
-                  <Button variant="default" size="sm" className="gradient-primary text-white">
-                    <Play className="h-4 w-4 mr-2" />
-                    Demo
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Github className="h-4 w-4 mr-2" />
-                    Code
-                  </Button>
-                  <Button variant="ghost" size="sm">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Details
-                  </Button>
-                </div>
+                <Button className="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary/90 text-sm">
+                  View Project
+                </Button>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Tech Highlights */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <div className="glass-card p-8 rounded-2xl max-w-4xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-6">Technical Excellence</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">95%</div>
-                <p className="text-muted-foreground">Crash-Free Sessions</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">1000+</div>
-                <p className="text-muted-foreground">Active Users</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-secondary mb-2">30%</div>
-                <p className="text-muted-foreground">Performance Improvement</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

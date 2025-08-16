@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Mail, Sparkles } from "lucide-react";
+import { ArrowDown, Download, Mail, Sparkles, Users, Award, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -12,9 +12,9 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5" />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-background">
+      {/* Clean background with subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background to-secondary/10" />
       
       {/* Spline 3D Background - Right side */}
       <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block">
@@ -23,7 +23,7 @@ const HeroSection = () => {
           frameBorder='0' 
           width='100%' 
           height='100%'
-          className="opacity-60"
+          className="opacity-40"
         />
       </div>
 
@@ -36,82 +36,58 @@ const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Greeting with wave */}
+            {/* Clean greeting */}
             <motion.div
-              className="flex items-center space-x-3 text-lg text-muted-foreground"
+              className="flex items-center space-x-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <span>Hello, I'm</span>
-              <motion.span
-                className="text-2xl cursor-pointer relative"
-                onClick={handleWaveClick}
-                whileHover={{ rotate: 20 }}
-                whileTap={{ scale: 1.2 }}
-              >
-                👋
-                {showSparkle && (
-                  <motion.div
-                    className="absolute -top-2 -right-2"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0, opacity: 0 }}
-                  >
-                    <Sparkles className="h-4 w-4 text-primary" />
-                  </motion.div>
-                )}
-              </motion.span>
+              <div className="orange-divider"></div>
+              <span className="text-lg text-muted-foreground font-medium">Hello.</span>
             </motion.div>
 
-            {/* Name and title */}
+            {/* Name and title - Behance style */}
             <div>
-              <motion.h1
-                className="text-5xl lg:text-7xl font-bold gradient-primary bg-clip-text text-transparent"
+              <motion.div
+                className="mb-4"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                Sumen Kumar
-              </motion.h1>
-              <motion.h1
-                className="text-5xl lg:text-7xl font-bold text-foreground"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
-              >
-                Dubey
-              </motion.h1>
+                <p className="text-lg text-muted-foreground mb-2">I'm Sumen Kumar</p>
+                <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-4">Dubey</h1>
+                <h2 className="text-2xl lg:text-3xl font-bold text-primary">Frontend Developer</h2>
+              </motion.div>
             </div>
 
-            {/* Role */}
+            {/* Role description */}
             <motion.div
-              className="space-y-2"
+              className="space-y-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
-              <p className="text-xl text-primary font-semibold">Frontend Developer</p>
               <p className="text-muted-foreground">React.js | React Native | Node.js | MongoDB</p>
             </motion.div>
 
-            {/* Elevator pitch */}
+            {/* Elevator pitch - cleaner style */}
             <motion.div
               className="space-y-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
             >
-              <p className="text-lg text-foreground font-medium leading-relaxed">
+              <p className="text-lg text-foreground leading-relaxed max-w-lg">
                 Frontend Developer specialized in React & modern web performance — 
                 building apps that scale to <span className="text-primary font-semibold">1,000+ users</span>.
               </p>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground max-w-lg">
                 I build fast, interactive, and scalable applications with React, Next.js, and modern web technologies.
               </p>
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Behance style */}
             <motion.div
               className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
@@ -119,19 +95,16 @@ const HeroSection = () => {
               transition={{ delay: 1.0 }}
             >
               <Button
-                size="lg"
-                className="gradient-primary text-white font-semibold hover-lift glow-primary"
-              >
-                <Download className="h5 w-5 mr-2" />
-                Download Resume
-              </Button>
-              <Button
                 variant="outline"
                 size="lg"
-                className="hover-lift"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="hover-lift border-border text-foreground hover:bg-secondary"
               >
-                <Mail className="h-5 w-5 mr-2" />
+                Let's Contact
+              </Button>
+              <Button
+                size="lg"
+                className="gradient-primary text-white font-semibold hover-lift"
+              >
                 Hire Me
               </Button>
             </motion.div>
@@ -150,42 +123,62 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right side - Professional Photo */}
+          {/* Right side - Professional Photo with Stats Cards */}
           <motion.div
-            className="lg:justify-self-center"
+            className="lg:justify-self-center relative"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="relative">
-              <div className="glass-card p-8 rounded-3xl">
+              {/* Main photo container */}
+              <div className="bg-card rounded-3xl p-8 shadow-xl border border-border">
                 <img
                   src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                   alt="Sumen Kumar Dubey - Frontend Developer"
-                  className="w-80 h-96 object-cover rounded-2xl shadow-lg"
+                  className="w-80 h-96 object-cover rounded-2xl"
                 />
               </div>
-              {/* Floating elements */}
+              
+              {/* Stats Cards - Behance style floating */}
               <motion.div
-                className="absolute -top-4 -right-4 glass-card p-3 rounded-xl"
+                className="absolute -top-6 -right-6 stats-card min-w-[120px]"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <span className="text-2xl">⚡</span>
+                <div className="text-center">
+                  <div className="stats-number">3+</div>
+                  <div className="stats-label">Years Experience</div>
+                </div>
               </motion.div>
+
               <motion.div
-                className="absolute -bottom-4 -left-4 glass-card p-3 rounded-xl"
+                className="absolute top-1/2 -right-8 stats-card min-w-[120px]"
                 animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
               >
-                <span className="text-2xl">🚀</span>
+                <div className="text-center">
+                  <div className="stats-number">15+</div>
+                  <div className="stats-label">Clients</div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="absolute -bottom-6 -left-6 stats-card min-w-[120px]"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+              >
+                <div className="text-center">
+                  <div className="stats-number">4+</div>
+                  <div className="stats-label">Projects</div>
+                </div>
               </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Recruiter shortcuts - Floating */}
+      {/* Recruiter shortcuts - Updated styling */}
       <motion.div
         className="fixed right-6 top-1/2 transform -translate-y-1/2 z-30 space-y-3"
         initial={{ opacity: 0, x: 100 }}
@@ -194,26 +187,26 @@ const HeroSection = () => {
       >
         <Button
           size="sm"
-          className="glass-card p-3 hover-lift"
+          className="bg-card border border-border p-3 hover-lift hover:bg-secondary shadow-lg"
           title="Download Resume"
         >
-          <Download className="h-4 w-4" />
+          <Download className="h-4 w-4 text-primary" />
         </Button>
         <Button
           size="sm"
-          className="glass-card p-3 hover-lift"
+          className="bg-card border border-border p-3 hover-lift hover:bg-secondary shadow-lg"
           title="View Experience"
           onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          💼
+          <Briefcase className="h-4 w-4 text-primary" />
         </Button>
         <Button
           size="sm"
-          className="glass-card p-3 hover-lift"
+          className="bg-card border border-border p-3 hover-lift hover:bg-secondary shadow-lg"
           title="Contact Me"
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          📧
+          <Mail className="h-4 w-4 text-primary" />
         </Button>
       </motion.div>
     </section>

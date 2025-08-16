@@ -50,125 +50,127 @@ const ExperienceSection = () => {
     }
   ];
 
-  const companies = [
-    { name: "Soft Designers", logo: "🏢" },
-    { name: "Mouthline Tech", logo: "🦷" },
-    { name: "MetricStream", logo: "📊" },
-    { name: "TechCorp", logo: "💻" },
-    { name: "InnovateLab", logo: "🚀" },
-    { name: "DataFlow", logo: "📈" }
+  const education = [
+    {
+      degree: "Bachelor of Computer Science",
+      school: "Birla Institute of Technology",
+      period: "2016 - 2020",
+      type: "Education"
+    },
+    {
+      degree: "Foundations of Data Science",
+      school: "Google (Credential ID: ZQQWA8JR3DSZ)",
+      period: "Jul 2025",
+      type: "Certification"
+    }
   ];
 
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-20 bg-background">
       <div className="container mx-auto px-6">
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Building scalable web applications and leading frontend development across multiple organizations
-          </p>
+          <div className="text-center">
+            <div className="orange-divider mx-auto"></div>
+            <h2 className="section-header">My Resume</h2>
+          </div>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-secondary"></div>
+        <div className="grid lg:grid-cols-2 gap-16">
+          {/* Experience Timeline */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center mb-8">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
+                <span className="text-white text-sm font-bold">💼</span>
+              </div>
+              <h3 className="text-2xl font-bold text-foreground">Experience</h3>
+            </div>
 
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                className="relative pl-20"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-6 top-6 w-4 h-4 rounded-full gradient-primary border-4 border-background"></div>
-
-                <div className="glass-card p-8 rounded-2xl hover-lift">
-                  <div className="flex flex-wrap items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground mb-1">{exp.role}</h3>
-                      <h4 className="text-xl text-primary font-semibold mb-2">{exp.company}</h4>
+            <div className="relative border-l-2 border-border ml-4 pl-8">
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  className="mb-8 relative"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  {/* Orange dot */}
+                  <div className="absolute -left-10 top-2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
+                  
+                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
+                    <div className="bg-primary/10 text-primary px-3 py-1 rounded-full inline-block text-sm font-medium mb-3">
+                      experience
                     </div>
-                    <Badge variant="secondary" className="mb-2">
-                      {exp.type}
-                    </Badge>
+                    
+                    <h4 className="text-lg font-bold text-foreground mb-1">
+                      {exp.company} ({exp.period.split(' - ')[1] || exp.period.split(' - ')[0]})
+                    </h4>
+                    <h5 className="text-base font-semibold text-foreground mb-3">{exp.role}</h5>
+                    
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {exp.achievements[0]}
+                    </p>
                   </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-                  <div className="flex flex-wrap items-center gap-4 mb-6 text-muted-foreground">
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>{exp.period}</span>
+          {/* Education Timeline */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center mb-8">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
+                <span className="text-white text-sm font-bold">🎓</span>
+              </div>
+              <h3 className="text-2xl font-bold text-foreground">Education</h3>
+            </div>
+
+            <div className="relative border-l-2 border-border ml-4 pl-8">
+              {education.map((edu, index) => (
+                <motion.div
+                  key={index}
+                  className="mb-8 relative"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: (index + 3) * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  {/* Orange dot */}
+                  <div className="absolute -left-10 top-2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
+                  
+                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
+                    <div className="bg-primary/10 text-primary px-3 py-1 rounded-full inline-block text-sm font-medium mb-3">
+                      {edu.type}
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4" />
-                      <span>{exp.location}</span>
-                    </div>
+                    
+                    <h4 className="text-lg font-bold text-foreground mb-1">{edu.period}</h4>
+                    <h5 className="text-base font-semibold text-foreground mb-3">{edu.degree}</h5>
+                    
+                    <p className="text-sm text-muted-foreground">{edu.school}</p>
                   </div>
-
-                  <ul className="space-y-3 mb-6">
-                    {exp.achievements.map((achievement, achievementIndex) => (
-                      <motion.li
-                        key={achievementIndex}
-                        className="flex items-start space-x-3 text-foreground"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: achievementIndex * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                        <span>{achievement}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-
-        {/* Company Logos Row */}
-        <motion.div
-          className="mt-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-center text-xl font-semibold mb-8 text-muted-foreground">
-            Trusted by leading organizations
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {companies.map((company, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center space-x-3 glass-card px-6 py-4 rounded-xl"
-                whileHover={{ scale: 1.05, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <span className="text-2xl">{company.logo}</span>
-                <span className="font-medium text-muted-foreground">{company.name}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
