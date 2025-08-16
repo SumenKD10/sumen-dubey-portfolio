@@ -1,10 +1,74 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, ExternalLink, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
+import { useState } from "react";
+
+// Form validation schema
+const contactFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = "service_bflxqpj";
+const EMAILJS_TEMPLATE_ID = "template_2xkbdyl";
+const EMAILJS_PUBLIC_KEY = "gEnAKsq9-UUrB5bQN";
 
 const ContactSection = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Initialize EmailJS
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      
+      // Prepare template parameters
+      const templateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        message: data.message,
+        to_name: "Sumen Kumar Dubey",
+      };
+
+      // Send email
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      // Success feedback
+      toast.success("Message sent successfully! I'll get back to you soon.");
+      reset(); // Clear form
+      
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast.error("Failed to send message. Please try again or contact me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
@@ -85,33 +149,53 @@ const ContactSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <form className="space-y-4 lg:space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 lg:space-y-6">
               <div>
                 <Input
+                  {...register("name")}
                   type="text"
                   placeholder="Your Name"
                   className="w-full p-3 lg:p-4 rounded-2xl border border-border bg-card focus:border-primary text-sm lg:text-base"
                 />
+                {errors.name && (
+                  <p className="text-destructive text-sm mt-1">{errors.name.message}</p>
+                )}
               </div>
               <div>
                 <Input
+                  {...register("email")}
                   type="email"
                   placeholder="Your Email"
                   className="w-full p-3 lg:p-4 rounded-2xl border border-border bg-card focus:border-primary text-sm lg:text-base"
                 />
+                {errors.email && (
+                  <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
+                )}
               </div>
               <div>
                 <Textarea
+                  {...register("message")}
                   placeholder="Your Message"
                   rows={5}
                   className="w-full p-3 lg:p-4 rounded-2xl border border-border bg-card focus:border-primary resize-none text-sm lg:text-base"
                 />
+                {errors.message && (
+                  <p className="text-destructive text-sm mt-1">{errors.message.message}</p>
+                )}
               </div>
               <Button
                 type="submit"
-                className="w-full bg-primary text-white py-3 lg:py-4 rounded-2xl font-medium hover:bg-primary/90 transition-colors text-sm lg:text-base"
+                disabled={isSubmitting}
+                className="w-full bg-primary text-white py-3 lg:py-4 rounded-2xl font-medium hover:bg-primary/90 transition-colors text-sm lg:text-base disabled:opacity-50"
               >
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </Button>
             </form>
           </motion.div>
