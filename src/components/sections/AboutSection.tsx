@@ -24,24 +24,24 @@ const AboutSection = () => {
           <h2 className="section-header">About Me</h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left side - Image */}
           <motion.div
-            className="relative"
+            className="relative order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="bg-card rounded-2xl p-6 shadow-lg border border-border">
+            <div className="bg-card rounded-2xl p-4 lg:p-6 shadow-lg border border-border">
               <img
                 src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                 alt="Sumen Kumar Dubey - About"
-                className="w-full h-80 object-cover rounded-xl"
+                className="w-full h-64 sm:h-72 lg:h-80 object-cover rounded-xl"
               />
               
               {/* Orange badge */}
-              <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+              <div className="absolute top-2 left-2 lg:top-4 lg:left-4 bg-primary text-white px-2 py-1 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm font-medium">
                 FRONTEND DEVELOPER
               </div>
             </div>
@@ -49,19 +49,19 @@ const AboutSection = () => {
 
           {/* Right side - Content */}
           <motion.div
-            className="space-y-8"
+            className="order-1 lg:order-2 space-y-6 lg:space-y-8"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 leading-tight">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
                 I don't just build apps I design 
                 how people feel when they use them
               </h3>
               
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-3 lg:space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
                 <p>
                   Hi, I'm Sumen Kumar Dubey, a Frontend Developer. I specialize in creating simple, 
                   effective, and visually appealing applications for users. Good development isn't just 
@@ -81,7 +81,7 @@ const AboutSection = () => {
               </div>
 
               <motion.button
-                className="mt-8 bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                className="mt-6 lg:mt-8 bg-primary text-white px-6 lg:px-8 py-2 lg:py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors text-sm lg:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -93,7 +93,7 @@ const AboutSection = () => {
 
         {/* Stats Section */}
         <motion.div
-          className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6"
+          className="mt-12 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}

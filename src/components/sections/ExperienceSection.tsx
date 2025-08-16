@@ -82,7 +82,7 @@ const ExperienceSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Experience Timeline */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -90,14 +90,14 @@ const ExperienceSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center mb-8">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white text-sm font-bold">💼</span>
+            <div className="flex items-center mb-6 lg:mb-8">
+              <div className="w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
+                <span className="text-white text-xs lg:text-sm font-bold">💼</span>
               </div>
-              <h3 className="text-2xl font-bold text-foreground">Experience</h3>
+              <h3 className="text-xl lg:text-2xl font-bold text-foreground">Experience</h3>
             </div>
 
-            <div className="relative border-l-2 border-border ml-4 pl-8">
+            <div className="relative border-l-2 border-border ml-3 lg:ml-4 pl-6 lg:pl-8">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={index}
@@ -108,9 +108,9 @@ const ExperienceSection = () => {
                   viewport={{ once: true }}
                 >
                   {/* Orange dot */}
-                  <div className="absolute -left-10 top-2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
+                  <div className="absolute -left-8 lg:-left-10 top-2 w-3 h-3 lg:w-4 lg:h-4 bg-primary rounded-full border-2 lg:border-4 border-background"></div>
                   
-                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
+                  <div className="bg-card rounded-2xl p-4 lg:p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
                     <div className="bg-primary/10 text-primary px-3 py-1 rounded-full inline-block text-sm font-medium mb-3">
                       experience
                     </div>
@@ -136,14 +136,14 @@ const ExperienceSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center mb-8">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white text-sm font-bold">🎓</span>
+            <div className="flex items-center mb-6 lg:mb-8">
+              <div className="w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
+                <span className="text-white text-xs lg:text-sm font-bold">🎓</span>
               </div>
-              <h3 className="text-2xl font-bold text-foreground">Education</h3>
+              <h3 className="text-xl lg:text-2xl font-bold text-foreground">Education</h3>
             </div>
 
-            <div className="relative border-l-2 border-border ml-4 pl-8">
+            <div className="relative border-l-2 border-border ml-3 lg:ml-4 pl-6 lg:pl-8">
               {education.map((edu, index) => (
                 <motion.div
                   key={index}
@@ -154,9 +154,9 @@ const ExperienceSection = () => {
                   viewport={{ once: true }}
                 >
                   {/* Orange dot */}
-                  <div className="absolute -left-10 top-2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
+                  <div className="absolute -left-8 lg:-left-10 top-2 w-3 h-3 lg:w-4 lg:h-4 bg-primary rounded-full border-2 lg:border-4 border-background"></div>
                   
-                  <div className="bg-card rounded-2xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
+                  <div className="bg-card rounded-2xl p-4 lg:p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
                     <div className="bg-primary/10 text-primary px-3 py-1 rounded-full inline-block text-sm font-medium mb-3">
                       {edu.type}
                     </div>

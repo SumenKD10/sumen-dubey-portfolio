@@ -72,20 +72,20 @@ const SkillsSection = () => {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-12 lg:mb-16">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              className="glass-card p-6 rounded-2xl"
+              className="glass-card p-4 lg:p-6 rounded-2xl"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-semibold mb-6 gradient-primary bg-clip-text text-transparent">
+              <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 gradient-primary bg-clip-text text-transparent">
                 {category.title}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 lg:space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}

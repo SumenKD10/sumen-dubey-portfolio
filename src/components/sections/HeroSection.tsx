@@ -123,54 +123,54 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right side - Professional Photo with Stats Cards */}
+            {/* Right side - Professional Photo with Stats Cards */}
           <motion.div
-            className="lg:justify-self-center relative"
+            className="flex justify-center lg:justify-self-center relative"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative">
+            <div className="relative max-w-sm mx-auto">
               {/* Main photo container */}
-              <div className="bg-card rounded-3xl p-8 shadow-xl border border-border">
+              <div className="bg-card rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl border border-border">
                 <img
                   src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                   alt="Sumen Kumar Dubey - Frontend Developer"
-                  className="w-80 h-96 object-cover rounded-2xl"
+                  className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] h-64 sm:h-80 lg:h-96 object-cover rounded-2xl mx-auto"
                 />
               </div>
               
-              {/* Stats Cards - Behance style floating */}
+              {/* Stats Cards - Responsive positioning */}
               <motion.div
-                className="absolute -top-6 -right-6 stats-card min-w-[120px]"
+                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 stats-card min-w-[100px] sm:min-w-[120px] hidden sm:block"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <div className="text-center">
-                  <div className="stats-number">3+</div>
-                  <div className="stats-label">Years Experience</div>
+                  <div className="stats-number text-lg sm:text-xl">3+</div>
+                  <div className="stats-label text-xs sm:text-sm">Years Experience</div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 -right-8 stats-card min-w-[120px]"
+                className="absolute top-1/2 -right-6 sm:-right-8 stats-card min-w-[100px] sm:min-w-[120px] hidden md:block"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
               >
                 <div className="text-center">
-                  <div className="stats-number">15+</div>
-                  <div className="stats-label">Clients</div>
+                  <div className="stats-number text-lg sm:text-xl">15+</div>
+                  <div className="stats-label text-xs sm:text-sm">Clients</div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="absolute -bottom-6 -left-6 stats-card min-w-[120px]"
+                className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 stats-card min-w-[100px] sm:min-w-[120px] hidden sm:block"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 2 }}
               >
                 <div className="text-center">
-                  <div className="stats-number">4+</div>
-                  <div className="stats-label">Projects</div>
+                  <div className="stats-number text-lg sm:text-xl">4+</div>
+                  <div className="stats-label text-xs sm:text-sm">Projects</div>
                 </div>
               </motion.div>
             </div>
@@ -178,9 +178,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Recruiter shortcuts - Updated styling */}
+      {/* Recruiter shortcuts - Responsive positioning */}
       <motion.div
-        className="fixed right-6 top-1/2 transform -translate-y-1/2 z-30 space-y-3"
+        className="fixed right-4 sm:right-6 top-1/2 transform -translate-y-1/2 z-30 space-y-3 hidden lg:flex lg:flex-col"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}

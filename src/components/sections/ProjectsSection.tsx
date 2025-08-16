@@ -114,7 +114,7 @@ const ProjectsSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -126,17 +126,17 @@ const ProjectsSection = () => {
               whileHover={{ scale: 1.02 }}
             >
               {/* Project Image Placeholder */}
-              <div className="h-64 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center border-b border-border">
-                <span className="text-6xl">{project.image}</span>
+              <div className="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center border-b border-border">
+                <span className="text-4xl sm:text-5xl lg:text-6xl">{project.image}</span>
               </div>
 
               {/* Project Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+              <div className="p-4 lg:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 lg:mb-4 gap-2">
+                  <h3 className="text-lg lg:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <div className="flex gap-2">
+                  <div className="flex gap-1 lg:gap-2 flex-wrap">
                     <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">
                       Figma
                     </span>
@@ -146,11 +146,11 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                <p className="text-muted-foreground mb-3 lg:mb-4 leading-relaxed text-xs sm:text-sm">
                   {project.description}
                 </p>
 
-                <Button className="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary/90 text-sm">
+                <Button className="bg-primary text-white px-4 lg:px-6 py-2 rounded-lg font-medium hover:bg-primary/90 text-xs lg:text-sm w-full sm:w-auto">
                   View Project
                 </Button>
               </div>
