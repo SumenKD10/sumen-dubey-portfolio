@@ -1,7 +1,11 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
+import { useGSAP } from "@/hooks/useGSAP";
 
 const SkillsSection = () => {
+  const { animateIn, staggerAnimation, gsap } = useGSAP();
+  const sectionRef = useRef<HTMLElement>(null);
+  
   const skillCategories = [
     {
       title: "Frontend",
@@ -55,109 +59,118 @@ const SkillsSection = () => {
     }
   ];
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate section header
+      animateIn(".skills-header");
+      
+      // Stagger animate skill categories
+      staggerAnimation(".skill-category", { delay: 0.2 });
+      
+      // Animate skill bars with delay
+      gsap.fromTo(".skill-bar", 
+        { width: "0%" },
+        {
+          width: (i, target) => target.dataset.level + "%",
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: ".skills-grid",
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+      
+      // Animate certifications
+      animateIn(".certifications-section", { delay: 0.5 });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [animateIn, staggerAnimation, gsap]);
+
   return (
-    <section id="skills" className="py-20 bg-muted/30">
+    <section ref={sectionRef} id="skills" className="py-20 bg-muted/30">
       <div className="container mx-auto px-6 mt-12">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl font-bold mb-4">Skills & Expertise</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+        <div className="skills-header text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 font-sora">Skills & Expertise</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-inter">
             Comprehensive technical stack with focus on modern web development
           </p>
-        </motion.div>
+        </div>
 
         {/* Skills Grid */}
-        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-12 lg:mb-16">
+        <div className="skills-grid grid sm:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-12 lg:mb-16">
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div
+            <div
               key={category.title}
-              className="glass-card p-4 lg:p-6 rounded-2xl"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              viewport={{ once: true }}
+              className="skill-category glass-card p-4 lg:p-6 rounded-2xl"
             >
-              <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 gradient-primary bg-clip-text text-transparent">
+              <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 gradient-primary bg-clip-text text-transparent font-sora">
                 {category.title}
               </h3>
               <div className="space-y-3 lg:space-y-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div
+                  <div
                     key={skill.name}
                     className="space-y-2"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: skillIndex * 0.05 }}
-                    viewport={{ once: true }}
                   >
                     <div className="flex justify-between items-center">
-                      <span className="font-medium text-foreground">{skill.name}</span>
-                      <Badge variant="secondary" className="text-xs">
+                      <span className="font-medium text-foreground font-inter">{skill.name}</span>
+                      <Badge variant="secondary" className="text-xs font-nunito">
                         {skill.level}%
                       </Badge>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
-                      <motion.div
-                        className={`h-2 rounded-full ${skill.color}`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1.2, delay: 0.5 + skillIndex * 0.1 }}
-                        viewport={{ once: true }}
+                      <div
+                        className={`skill-bar h-2 rounded-full ${skill.color}`}
+                        data-level={skill.level}
                       />
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Certifications */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-semibold mb-8">Certifications</h3>
+        <div className="certifications-section text-center">
+          <h3 className="text-2xl font-semibold mb-8 font-sora">Certifications</h3>
           <div className="flex justify-center">
             {certifications.map((cert, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="glass-card p-6 rounded-2xl hover-lift max-w-md"
-                whileHover={{ scale: 1.02 }}
+                className="glass-card p-6 rounded-2xl hover-lift max-w-md hover:scale-105 transition-transform duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold text-lg">G</span>
+                      <span className="text-primary font-bold text-lg font-sora">G</span>
                     </div>
                   </div>
                   <div className="flex-1 text-left">
-                    <h4 className="font-semibold text-foreground mb-1">{cert.name}</h4>
-                    <p className="text-muted-foreground text-sm mb-2">{cert.issuer} • {cert.date}</p>
+                    <h4 className="font-semibold text-foreground mb-1 font-sora">{cert.name}</h4>
+                    <p className="text-muted-foreground text-sm mb-2 font-inter">{cert.issuer} • {cert.date}</p>
                     <div className="flex items-center space-x-2">
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs font-nunito">
                         {cert.credential}
                       </Badge>
                       {cert.verified && (
-                        <Badge variant="default" className="text-xs bg-green-500">
+                        <Badge variant="default" className="text-xs bg-green-500 font-nunito">
                           ✓ Verified
                         </Badge>
                       )}
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

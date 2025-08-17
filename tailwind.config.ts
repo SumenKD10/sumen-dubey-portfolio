@@ -20,6 +20,9 @@ export default {
 		extend: {
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
+				poppins: ['Poppins', 'sans-serif'],
+				sora: ['Sora', 'sans-serif'],
+				nunito: ['Nunito', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

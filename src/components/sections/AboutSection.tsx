@@ -1,9 +1,13 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Code, Users, Award, TrendingUp } from "lucide-react";
 import GlowCard from "@/components/modern-ui/GlowCard";
 import MagneticButton from "@/components/modern-ui/MagneticButton";
+import { useGSAP } from "@/hooks/useGSAP";
 
 const AboutSection = () => {
+  const { animateIn, animateSlideIn, staggerAnimation, gsap } = useGSAP();
+  const sectionRef = useRef<HTMLElement>(null);
+  
   const stats = [
     { icon: Code, label: "Years Experience", value: "3+", color: "text-primary" },
     { icon: Users, label: "Production Projects", value: "4", color: "text-primary" },
@@ -11,56 +15,49 @@ const AboutSection = () => {
     { icon: TrendingUp, label: "User Scale", value: "1000+", color: "text-primary" },
   ];
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate section header
+      animateIn(".about-header");
+      
+      // Animate image and content with slide effects
+      animateSlideIn(".about-image", "left", { delay: 0.2 });
+      animateSlideIn(".about-content", "right", { delay: 0.3 });
+      
+      // Stagger animate stats cards
+      staggerAnimation(".stat-card", { delay: 0.5 });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [animateIn, animateSlideIn, staggerAnimation, gsap]);
+
   return (
-    <section id="about" className="py-20 bg-background">
+    <section ref={sectionRef} id="about" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <div className="about-header mb-16">
           <div className="orange-divider"></div>
-          <h2 className="section-header mt-12">About Me</h2>
-        </motion.div>
+          <h2 className="section-header mt-12 font-sora">About Me</h2>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left side - Enhanced Image with Glow Card */}
-          <motion.div
-            className="relative order-2 lg:order-1"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="about-image relative order-2 lg:order-1">
             <GlowCard className="shadow-xl" intensity="medium">
-              <motion.img
+              <img
                 src="/lovable-uploads/aboutme.jpeg"
                 alt="Sumen Kumar Dubey - About"
-                className="w-full h-64 sm:h-72 lg:h-80 object-cover object-[25%_65%] rounded-xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="w-full h-64 sm:h-72 lg:h-80 object-cover object-[25%_65%] rounded-xl hover:scale-105 transition-transform duration-500"
               />
-              
-              {/* Enhanced badge with glow effect */}
-              {/* <div className="absolute top-2 left-2 lg:top-4 lg:left-4 bg-primary text-white px-2 py-1 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm font-medium glow-primary">
-                FRONTEND DEVELOPER
-              </div> */}
             </GlowCard>
-          </motion.div>
+          </div>
 
           {/* Right side - Content */}
-          <motion.div
-            className="order-1 lg:order-2 space-y-6 lg:space-y-8"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="about-content order-1 lg:order-2 space-y-6 lg:space-y-8">
             <div>
-              <div className="space-y-3 lg:space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
+              <div className="space-y-3 lg:space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base font-inter">
                 <p>
                   Hi, I'm Sumen Kumar Dubey, a Frontend Developer. I specialize in creating simple, 
                   effective, and visually appealing applications for users. Good development isn't just 
@@ -83,42 +80,26 @@ const AboutSection = () => {
                 Let's Work Together
               </MagneticButton>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Enhanced Stats Section with Glow Cards */}
-        <motion.div
-          className="mt-12 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
+        <div className="mt-12 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
+            <div key={index} className="stat-card">
               <GlowCard 
                 className="text-center p-6 magnetic-hover"
                 intensity="low"
               >
-                <motion.div
-                  className="inline-flex p-3 rounded-full bg-primary/10 mb-4"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                >
+                <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4 hover:rotate-12 hover:scale-110 transition-transform duration-300">
                   <stat.icon className="h-6 w-6 text-primary" />
-                </motion.div>
-                <div className="text-2xl lg:text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
+                </div>
+                <div className="text-2xl lg:text-3xl font-bold text-primary mb-2 font-sora">{stat.value}</div>
+                <p className="text-sm text-muted-foreground font-medium font-nunito">{stat.label}</p>
               </GlowCard>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
