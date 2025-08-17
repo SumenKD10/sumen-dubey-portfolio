@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useGSAP } from "@/hooks/useGSAP";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -7,6 +7,8 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
+  const { gsap } = useGSAP();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -23,12 +25,53 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
     return () => clearInterval(timer);
   }, [onComplete]);
 
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate loading initials
+      gsap.fromTo(".loading-initials", 
+        { scale: 0.5, opacity: 0, rotateY: -180 },
+        { 
+          scale: 1, 
+          opacity: 1, 
+          rotateY: 0,
+          duration: 1.2,
+          ease: "back.out(1.7)",
+          delay: 0.2
+        }
+      );
+
+      // Animate progress bar container
+      gsap.fromTo(".progress-container", 
+        { width: 0, opacity: 0 },
+        { 
+          width: "16rem", 
+          opacity: 1,
+          duration: 0.5,
+          delay: 0.5
+        }
+      );
+
+      // Animate loading text
+      gsap.fromTo(".loading-text", 
+        { opacity: 0 },
+        { 
+          opacity: 1,
+          duration: 0.6,
+          delay: 0.8
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [gsap]);
+
   return (
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background"
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+    <div
+      ref={containerRef}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-background animate-fade-out"
+      style={{ animationDelay: progress === 100 ? '0.5s' : 'none' }}
     >
       {/* Animated background with floating particles */}
       <div className="absolute inset-0">
@@ -36,24 +79,14 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         
         {/* Floating orbs */}
         {[...Array(8)].map((_, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute w-2 h-2 bg-primary/20 rounded-full blur-sm"
+            className="absolute w-2 h-2 bg-primary/20 rounded-full blur-sm animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.random() * 100 - 50],
-              y: [0, Math.random() * 100 - 50],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: Math.random() * 4 + 3,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
+              animationDelay: `${Math.random() * 2}s`,
+              animationDuration: `${Math.random() * 3 + 2}s`
             }}
           />
         ))}
@@ -61,93 +94,47 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
       <div className="glass-card p-12 text-center relative z-10 backdrop-blur-xl">
         {/* Enhanced loading initials with 3D effect */}
-        <motion.div
-          className="loading-initials mb-8 relative"
-          initial={{ scale: 0.5, opacity: 0, rotateY: -180 }}
-          animate={{ scale: 1, opacity: 1, rotateY: 0 }}
-          transition={{ 
-            duration: 1.2, 
-            ease: "easeOut",
-            type: "spring",
-            stiffness: 100
-          }}
-        >
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-primary to-accent-glow opacity-20 blur-2xl"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <span className="relative z-10">SD</span>
-        </motion.div>
+        <div className="loading-initials mb-8 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent-glow opacity-20 blur-2xl animate-pulse" />
+          <span className="relative z-10 font-sora">SD</span>
+        </div>
         
         {/* Enhanced progress bar */}
-        <motion.div
-          className="w-64 h-2 bg-muted rounded-full overflow-hidden relative mb-6"
-          initial={{ width: 0, opacity: 0 }}
-          animate={{ width: "16rem", opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
+        <div className="progress-container w-64 h-2 bg-muted rounded-full overflow-hidden relative mb-6">
           {/* Background glow */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 blur-sm" />
           
           {/* Progress fill with shimmer effect */}
-          <motion.div
-            className="h-full rounded-full relative overflow-hidden"
+          <div
+            className="h-full rounded-full relative overflow-hidden transition-all duration-100"
             style={{
               background: `linear-gradient(135deg, 
                 hsl(var(--primary)), 
                 hsl(var(--accent-glow))
-              )`
+              )`,
+              width: `${progress}%`
             }}
-            initial={{ width: "0%" }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.1 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ 
-                duration: 1.5, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-            />
-          </motion.div>
-        </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" />
+          </div>
+        </div>
 
         {/* Progress percentage */}
-        <motion.div
-          className="text-sm font-medium text-primary mb-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
+        <div className="text-sm font-medium text-primary mb-4 font-sora animate-fade-in" style={{ animationDelay: '0.4s' }}>
           {progress}%
-        </motion.div>
+        </div>
         
         {/* Enhanced loading text with typewriter effect */}
-        <motion.div
-          className="text-muted-foreground font-medium relative"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          <motion.span
-            animate={{ opacity: [1, 0.5, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
+        <div className="loading-text text-muted-foreground font-medium relative font-inter">
+          <span className="animate-pulse">
             Loading Portfolio
-          </motion.span>
-          <motion.span
-            className="inline-block ml-1"
-            animate={{ opacity: [0, 1, 0] }}
-            transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
-          >
+          </span>
+          <span className="inline-block ml-1 animate-pulse" style={{ animationDelay: '0.5s' }}>
             ...
-          </motion.span>
-        </motion.div>
+          </span>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
