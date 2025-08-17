@@ -100,17 +100,13 @@ const ProjectsSection = () => {
         >
           <div className="text-center">
             <div className="orange-divider mx-auto"></div>
-            <h2 className="section-header">My Portfolio</h2>
+            <h2 className="section-header">My Projects</h2>
             <p className="section-subheader mx-auto">
               Crafting Seamless Design Experience
             </p>
-            <p className="text-muted-foreground max-w-3xl mx-auto mb-8">
-              A design portfolio showcasing creative and effective solutions for digital products brand 
-              and user experience showcasing creative
-            </p>
-            <Button className="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90">
+            {/* <Button className="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90">
               See All Project
-            </Button>
+            </Button> */}
           </div>
         </motion.div>
 

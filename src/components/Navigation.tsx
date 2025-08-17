@@ -10,8 +10,8 @@ const Navigation = () => {
 
   const navItems = [
     { label: "About", href: "#about" },
-    { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];
@@ -74,8 +74,8 @@ const Navigation = () => {
               size="sm"
               className="gradient-primary text-white font-medium hover-lift hidden sm:flex"
             >
-              <Download className="h-4 w-4 mr-2" />
-              Resume
+              <Download className="h-4 w-4" />
+              Download Resume
             </Button>
 
             {/* Mobile menu toggle */}

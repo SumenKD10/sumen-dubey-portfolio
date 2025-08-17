@@ -8,7 +8,7 @@ import GlowCard from "@/components/modern-ui/GlowCard";
 const HeroSection = () => {
   const roles = [
     "Frontend Developer",
-    "React Specialist", 
+    "React Specialist",
     "UI/UX Enthusiast",
     "Performance Expert"
   ];
@@ -23,7 +23,7 @@ const HeroSection = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-background">
       {/* Simplified background with clean gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-primary/5" />
-      
+
       {/* Subtle floating elements */}
       <div className="absolute top-20 left-20 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-float opacity-40" />
       <div className="absolute bottom-20 right-20 w-48 h-48 bg-accent/10 rounded-full blur-3xl animate-float delay-1000 opacity-40" />
@@ -38,15 +38,6 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Clean greeting */}
-            <motion.div
-              className="flex items-center space-x-3"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="w-12 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
-              <span className="text-lg text-muted-foreground font-medium">Hello there! 👋</span>
-            </motion.div>
 
             {/* Enhanced name presentation */}
             <motion.div
@@ -55,8 +46,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              <motion.h1 
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight"
+              <motion.h1
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mt-24"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -65,9 +56,9 @@ const HeroSection = () => {
                   Sumen Kumar Dubey
                 </span>
               </motion.h1>
-              
+
               <div className="text-2xl lg:text-3xl font-bold">
-                <TypewriterEffect 
+                <TypewriterEffect
                   words={roles}
                   className="text-2xl lg:text-3xl font-bold text-primary"
                 />
@@ -102,13 +93,8 @@ const HeroSection = () => {
               transition={{ delay: 0.8 }}
             >
               <p className="text-lg text-foreground leading-relaxed">
-                Frontend Developer specialized in React & modern web performance — 
-                building applications that scale to{" "}
-                <span className="text-primary font-semibold">1,000+ users</span>.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                I create fast, interactive, and scalable applications with modern web technologies, 
-                focusing on performance optimization and exceptional user experiences.
+                I don't just build apps I design 
+                how people feel when they use them
               </p>
             </motion.div>
 
@@ -122,20 +108,31 @@ const HeroSection = () => {
               <MagneticButton
                 variant="primary"
                 size="lg"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25"
+                onClick={() =>
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="items-center justify-center gap-2 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25"
               >
-                <Mail className="w-5 h-5 mr-2" />
-                Let's Connect
+                <div className="flex gap-4 items-center">
+                  <Mail className="w-5 h-5" />
+                  <div>
+                    Let's Connect
+                  </div>
+                </div>
               </MagneticButton>
-              <MagneticButton
+
+              {/* <MagneticButton
                 variant="secondary"
                 size="lg"
-                className="border-2 border-border hover:border-primary hover:shadow-lg"
+                className="flex flex-row items-center justify-center gap-2 border-2 border-border hover:border-primary hover:shadow-lg"
               >
-                <Download className="w-5 h-5 mr-2" />
-                Download Resume
-              </MagneticButton>
+                <div className="flex gap-4 items-center">
+                  <Download className="w-5 h-5" />
+                  <div>
+                    Download Resume
+                  </div>
+                </div>
+              </MagneticButton> */}
             </motion.div>
 
             {/* Stats integrated into content */}
@@ -196,32 +193,32 @@ const HeroSection = () => {
                 <motion.img
                   src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                   alt="Sumen Kumar Dubey - Frontend Developer"
-                  className="w-full h-80 lg:h-96 object-cover rounded-2xl"
+                  className="w-full h-80 lg:h-96 object-cover rounded-2xl bg-slate-200"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 />
-                
+
                 {/* Floating accent elements */}
                 <motion.div
                   className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-full backdrop-blur-sm"
-                  animate={{ 
+                  animate={{
                     y: [0, -10, 0],
                     rotate: [0, 180, 360]
                   }}
-                  transition={{ 
-                    duration: 4, 
+                  transition={{
+                    duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
                 />
                 <motion.div
                   className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent/20 rounded-full backdrop-blur-sm"
-                  animate={{ 
+                  animate={{
                     y: [0, 10, 0],
                     rotate: [360, 180, 0]
                   }}
-                  transition={{ 
-                    duration: 3, 
+                  transition={{
+                    duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: 1
@@ -241,7 +238,7 @@ const HeroSection = () => {
         transition={{ delay: 1.6, duration: 0.6 }}
       >
         {[
-          { icon: Download, title: "Download Resume", action: () => {} },
+          { icon: Download, title: "Download Resume", action: () => { } },
           { icon: Briefcase, title: "View Experience", action: () => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) },
           { icon: Mail, title: "Contact Me", action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }
         ].map((item, index) => {

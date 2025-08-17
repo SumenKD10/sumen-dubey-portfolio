@@ -23,7 +23,7 @@ const AboutSection = () => {
           viewport={{ once: true }}
         >
           <div className="orange-divider"></div>
-          <h2 className="section-header">About Me</h2>
+          <h2 className="section-header mt-12">About Me</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -35,19 +35,19 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <GlowCard className="p-4 lg:p-6 shadow-xl" intensity="medium">
+            <GlowCard className="shadow-xl" intensity="medium">
               <motion.img
-                src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
+                src="/lovable-uploads/aboutme.jpeg"
                 alt="Sumen Kumar Dubey - About"
-                className="w-full h-64 sm:h-72 lg:h-80 object-cover rounded-xl"
+                className="w-full h-64 sm:h-72 lg:h-80 object-cover object-[25%_65%] rounded-xl"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               />
               
               {/* Enhanced badge with glow effect */}
-              <div className="absolute top-2 left-2 lg:top-4 lg:left-4 bg-primary text-white px-2 py-1 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm font-medium glow-primary">
+              {/* <div className="absolute top-2 left-2 lg:top-4 lg:left-4 bg-primary text-white px-2 py-1 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm font-medium glow-primary">
                 FRONTEND DEVELOPER
-              </div>
+              </div> */}
             </GlowCard>
           </motion.div>
 
@@ -60,11 +60,6 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
-                I don't just build apps I design 
-                how people feel when they use them
-              </h3>
-              
               <div className="space-y-3 lg:space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
                 <p>
                   Hi, I'm Sumen Kumar Dubey, a Frontend Developer. I specialize in creating simple, 
@@ -76,11 +71,6 @@ const AboutSection = () => {
                   My work involves React.js, Next.js, and modern web technologies to create seamless and 
                   intuitive digital experiences. I focus on performance optimization, scalable architectures, 
                   and ensuring 95%+ crash-free sessions.
-                </p>
-
-                <p>
-                  Based in Bengaluru, I've contributed to enterprise-grade applications serving thousands 
-                  of users across companies like Soft Designers, Mouthline Technologies, and MetricStream India.
                 </p>
               </div>
 

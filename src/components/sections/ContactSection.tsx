@@ -83,7 +83,7 @@ const ContactSection = () => {
           <div className="text-center">
             <div className="orange-divider mx-auto"></div>
             <h2 className="section-header">Contact Me</h2>
-            <p className="section-subheader mx-auto">
+            <p className="mx-auto">
               Let's Work Together
             </p>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -108,11 +108,11 @@ const ContactSection = () => {
                   <Mail className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-foreground text-sm lg:text-base truncate">sumenkumardubey02@gmail.com</p>
+                  <p className="font-medium text-foreground text-sm lg:text-base truncate">sumenkumard@gmail.com</p>
                 </div>
-                <div className="ml-2 w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                {/* <div className="ml-2 w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                   <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4 text-white" />
-                </div>
+                </div> */}
               </div>
 
               <div className="flex items-center bg-card rounded-2xl p-4 lg:p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
@@ -120,11 +120,11 @@ const ContactSection = () => {
                   <Phone className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-foreground text-sm lg:text-base">+91-XXXXXXXXXX</p>
+                  <p className="font-medium text-foreground text-sm lg:text-base">+91-7979927735</p>
                 </div>
-                <div className="ml-2 w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                {/* <div className="ml-2 w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                   <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4 text-white" />
-                </div>
+                </div> */}
               </div>
 
               <div className="flex items-center bg-card rounded-2xl p-4 lg:p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
@@ -134,9 +134,9 @@ const ContactSection = () => {
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-foreground text-sm lg:text-base">Bengaluru, India</p>
                 </div>
-                <div className="ml-2 w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                {/* <div className="ml-2 w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                   <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4 text-white" />
-                </div>
+                </div> */}
               </div>
             </div>
           </motion.div>

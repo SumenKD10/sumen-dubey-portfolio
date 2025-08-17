@@ -30,7 +30,7 @@ const Index = () => {
         {/* Modern UI Enhancements */}
         <MagneticCursor />
         <InteractiveParticles />
-        <ScrollProgress />
+        {/* <ScrollProgress /> */}
         <FloatingElements />
         
         <AnimatePresence mode="wait">

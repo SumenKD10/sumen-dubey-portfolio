@@ -10,9 +10,9 @@ interface MagneticButtonProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const MagneticButton = ({ 
-  children, 
-  className = '', 
+const MagneticButton = ({
+  children,
+  className = '',
   onClick,
   variant = 'primary',
   size = 'md'
@@ -57,6 +57,7 @@ const MagneticButton = ({
       className={cn(
         'relative rounded-lg font-medium transition-all duration-300 ease-out',
         'hover:scale-105 active:scale-95',
+        'inline-flex items-center justify-center gap-2',
         variants[variant],
         sizes[size],
         className
@@ -65,9 +66,9 @@ const MagneticButton = ({
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        type: "spring", 
-        stiffness: 400, 
+      transition={{
+        type: "spring",
+        stiffness: 400,
         damping: 25,
         opacity: { duration: 0.3 },
         y: { duration: 0.4 }

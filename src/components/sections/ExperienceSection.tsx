@@ -21,7 +21,7 @@ const ExperienceSection = () => {
       technologies: ["React.js", "React Native", "JavaScript", "GitHub Actions", "Atomic Design"]
     },
     {
-      company: "Mouthline Technologies Pvt. Ltd.",
+      company: "Mountblue Technologies Pvt. Ltd.",
       role: "Frontend Developer Intern",
       period: "Feb 2023 - Aug 2023",
       location: "Remote",
@@ -52,9 +52,9 @@ const ExperienceSection = () => {
 
   const education = [
     {
-      degree: "Bachelor of Computer Science",
-      school: "Birla Institute of Technology",
-      period: "2016 - 2020",
+      degree: "Bachelor of Technology",
+      school: "Haldia Institute of Technology",
+      period: "2015 - 2019",
       type: "Education"
     },
     {
@@ -78,7 +78,7 @@ const ExperienceSection = () => {
         >
           <div className="text-center">
             <div className="orange-divider mx-auto"></div>
-            <h2 className="section-header">My Resume</h2>
+            <h2 className="section-header">My Background</h2>
           </div>
         </motion.div>
 
@@ -111,9 +111,9 @@ const ExperienceSection = () => {
                   <div className="absolute -left-8 lg:-left-10 top-2 w-3 h-3 lg:w-4 lg:h-4 bg-primary rounded-full border-2 lg:border-4 border-background"></div>
                   
                   <div className="bg-card rounded-2xl p-4 lg:p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300">
-                    <div className="bg-primary/10 text-primary px-3 py-1 rounded-full inline-block text-sm font-medium mb-3">
+                    {/* <div className="bg-primary/10 text-primary px-3 py-1 rounded-full inline-block text-sm font-medium mb-3">
                       experience
-                    </div>
+                    </div> */}
                     
                     <h4 className="text-lg font-bold text-foreground mb-1">
                       {exp.company} ({exp.period.split(' - ')[1] || exp.period.split(' - ')[0]})
