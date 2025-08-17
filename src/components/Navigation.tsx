@@ -124,8 +124,8 @@ const Navigation = () => {
                 size="sm"
                 className="gradient-primary text-white font-medium self-start mt-4 font-inter"
               >
-                <Download className="h-4 w-4 mr-2" />
-                Resume
+                <Download className="h-4 w-4" />
+                Download Resume
               </Button>
             </div>
           </div>

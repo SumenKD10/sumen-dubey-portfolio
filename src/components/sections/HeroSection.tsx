@@ -65,7 +65,7 @@ const HeroSection = () => {
     <section 
       ref={heroRef}
       id="hero" 
-      className="min-h-screen relative overflow-hidden bg-background pt-20"
+      className="min-h-screen relative overflow-hidden bg-background"
     >
       {/* Clean minimal background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/98 to-primary/3" />
@@ -78,7 +78,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen">
           
           {/* Left Side - Typography & Info */}
-          <div className="space-y-12 lg:pr-12">
+          <div className="space-y-8 lg:pr-4 z-10 md:mt-20">
             
             {/* Hero Labels - Magazine Style */}
             <div ref={subtitleRef} className="space-y-2 opacity-0">
@@ -93,21 +93,21 @@ const HeroSection = () => {
             </div>
 
             {/* Large Name Typography */}
-            <div className="space-y-4">
+            <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row text-center">
               <h1 
                 ref={nameRef}
-                className="text-7xl lg:text-8xl xl:text-9xl font-bold font-sora leading-none text-foreground opacity-0"
+                className="text-7xl lg:text-8xl xl:text-8xl font-bold font-sora leading-none text-foreground opacity-0"
                 style={{ letterSpacing: '-0.02em' }}
               >
                 Sumen
               </h1>
               <div className="ml-4 lg:ml-8">
-                <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold font-sora leading-none text-foreground/60">
+                <h1 className="text-7xl lg:text-8xl xl:text-8xl font-bold font-sora leading-none text-foreground/60" style={{ letterSpacing: '-0.02em' }}>
                   Kumar
                 </h1>
               </div>
-              <div className="ml-8 lg:ml-16">
-                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold font-sora leading-none">
+              <div className="ml-8 lg:ml-8">
+                <h1 className="text-7xl lg:text-8xl xl:text-8xl font-bold font-sora leading-none" style={{ letterSpacing: '-0.02em' }}>
                   <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                     Dubey
                   </span>
@@ -158,27 +158,27 @@ const HeroSection = () => {
           </div>
 
           {/* Right Side - Professional Image */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-end z-0">
             <div 
               ref={imageRef}
-              className="relative opacity-0"
+              className="relative opacity-0 rounded-3xl"
             >
               {/* Main Image Container */}
-              <div className="relative">
+              <div className="relative rounded-3xl overflow-hidden">
                 <img
                   src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                   alt="Sumen Kumar Dubey - Frontend Developer"
-                  className="w-80 lg:w-96 h-96 lg:h-[500px] object-cover rounded-3xl shadow-2xl"
+                  className="w-80 lg:w-96 h-96 lg:h-[500px] object-cover rounded-3xl shadow-2xl bg-orange-300"
                 />
                 
                 {/* Image Overlay Elements */}
-                <div className="absolute -bottom-6 -left-6 bg-card/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-border/50">
+                {/* <div className="absolute -bottom-6 -left-6 bg-card/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-border/50">
                   <div className="text-sm font-medium font-inter text-foreground">Available for</div>
                   <div className="text-xs font-nunito text-muted-foreground">Freelance Projects</div>
-                </div>
+                </div> */}
 
                 {/* Decorative QR-like element */}
-                <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary/10 rounded-lg border-2 border-primary/20 flex items-center justify-center">
+                <div className="absolute top-4 right-4 w-12 h-12 bg-primary/10 rounded-lg border-2 border-primary/20 flex items-center justify-center">
                   <div className="w-6 h-6 bg-primary/30 rounded-sm"></div>
                 </div>
               </div>
