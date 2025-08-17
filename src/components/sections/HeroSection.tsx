@@ -193,7 +193,7 @@ const HeroSection = () => {
                 <motion.img
                   src="/lovable-uploads/38d92104-93d0-4919-8a97-9637c5fffb79.png"
                   alt="Sumen Kumar Dubey - Frontend Developer"
-                  className="w-full h-80 lg:h-96 object-cover rounded-2xl bg-slate-200"
+                  className="w-full h-80 lg:h-96 object-cover rounded-2xl bg-orange-300"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 />
